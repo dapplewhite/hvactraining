@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVAC Career Programs - TRADESready</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5016 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Program Section */
+        .program-section {
+            padding: 80px 0;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .program-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .program-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .program-title {
+            font-size: 2.5rem;
+            color: #1a472a;
+            margin-bottom: 1rem;
+        }
+
+        .program-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .program-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        /* At-Risk Analysis */
+        .at-risk-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #dc3545;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #1a472a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .risk-meter {
+            background: linear-gradient(to right, #dc3545 0%, #ff6b6b 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .risk-level {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .target-jobs {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .target-jobs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .job-count {
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        /* Career Outcomes */
+        .outcomes-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #ff6b35;
+        }
+
+        .salary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .salary-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .job-title {
+            font-weight: bold;
+            color: #1a472a;
+            margin-bottom: 0.5rem;
+        }
+
+        .salary-range {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .growth-indicator {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Market Opportunity */
+        .opportunity-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #28a745;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin: 1rem 0;
+        }
+
+        .security-score {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .score-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* ROI Calculator */
+        .roi-calculator {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5016 100%);
+            color: white;
+            padding: 3rem 0;
+            margin: 4rem 0;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .calculator-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+
+        .roi-results {
+            text-align: center;
+        }
+
+        .roi-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin: 1rem 0;
+        }
+
+        /* Comparison Matrix */
+        .comparison-matrix {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: #1a472a;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .check-mark {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cta-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .program-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        /* Interactive Elements */
+        .interactive-chart:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .program-nav {
+            position: sticky;
+            top: 80px;
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            z-index: 100;
+        }
+
+        .program-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .program-nav-links a {
+            color: #1a472a;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .program-nav-links a:hover,
+        .program-nav-links a.active {
+            background: #1a472a;
+            color: white;
+        }
+
+        /* Trade-specific styling */
+        .trade-badge {
+            background: #ff6b35;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">TRADESready</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#calculator">ROI Calculator</a></li>
+                <li><a href="#comparison">Compare</a></li>
+            </ul>
+            <a href="#apply" class="cta-button">Apply Now</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Your HVAC Career Roadmap</h1>
+            <p>Data-driven pathways from factory floor to business owner. Real wages. Guaranteed placement. Recession-proof careers.</p>
+        </div>
+    </section>
+
+    <nav class="program-nav">
+        <div class="container">
+            <ul class="program-nav-links">
+                <li><a href="#career-launch" class="active">Career Launch</a></li>
+                <li><a href="#advanced-professional">Advanced Professional</a></li>
+                <li><a href="#business-mastery">Business Mastery</a></li>
+                <li><a href="#calculator">ROI Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PROGRAM 1: HVAC CAREER LAUNCH -->
+    <section class="program-section" id="career-launch">
+        <div class="container">
+            <div class="program-header">
+                <h2 class="program-title">HVAC Career Launch <span class="trade-badge">ENTRY LEVEL</span></h2>
+                <p class="program-subtitle">Fast-track from factory automation to essential infrastructure careers with immediate earning potential</p>
+            </div>
+
+            <div class="program-content">
+                <!-- At-Risk Analysis -->
+                <div class="at-risk-section">
+                    <h3 class="section-title">⚠️ At-Risk Workers</h3>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-level">CRITICAL DISPLACEMENT</div>
+                        <div>Manufacturing automation: 2024-2026</div>
+                    </div>
+
+                    <ul class="target-jobs">
+                        <li>Assembly Line Workers <span class="job-count">2.1M jobs</span></li>
+                        <li>Machine Operators <span class="job-count">1.8M jobs</span></li>
+                        <li>Factory Workers <span class="job-count">1.2M jobs</span></li>
+                        <li>Warehouse Workers <span class="job-count">750K jobs</span></li>
+                        <li>High School Graduates <span class="job-count">3.7M annually</span></li>
+                    </ul>
+
+                    <div class="chart-container">
+                        <canvas id="displacementChart1"></canvas>
+                    </div>
+
+                    <p><strong>Automation Impact:</strong> 1.6 jobs lost per robot installed</p>
+                    <p><strong>Timeline:</strong> 2 million manufacturing jobs by 2025</p>
+                </div>
+
+                <!-- Career Outcomes -->
+                <div class="outcomes-section">
+                    <h3 class="section-title">💰 HVAC Career Outcomes</h3>
+                    
+                    <div class="salary-grid">
+                        <div class="salary-card">
+                            <div class="job-title">Entry HVAC Technician</div>
+                            <div class="salary-range">$45,000 - $57,000</div>
+                            <div class="growth-indicator">9% growth rate</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Experienced HVAC Tech</div>
+                            <div class="salary-range">$57,000 - $75,000</div>
+                            <div class="growth-indicator">High demand</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">HVAC Installer</div>
+                            <div class="salary-range">$50,000 - $68,000</div>
+                            <div class="growth-indicator">New construction</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Refrigeration Tech</div>
+                            <div class="salary-range">$48,000 - $65,000</div>
+                            <div class="growth-indicator">Specialized field</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Top Paying States:</strong></p>
+                    <ul>
+                        <li>Washington: $66,577 average HVAC salary</li>
+                        <li>California: $68,106 average HVAC salary</li>
+                        <li>Massachusetts: $67,198 average HVAC salary</li>
+                    </ul>
+
+                    <p><strong>Career Progression:</strong><br>
+                    Year 1: Apprentice → Year 3: Journeyman (+$15K) → Year 5: Master Tech (+$25K)</p>
+                </div>
+
+                <!-- Market Opportunity -->
+                <div class="opportunity-section">
+                    <h3 class="section-title">📈 Market Opportunity</h3>
+                    
+                    <div class="security-score">
+                        <div class="score-number">9.5/10</div>
+                        <div>AI-Resistance Score</div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="opportunityChart1"></canvas>
+                    </div>
+
+                    <p><strong>Job Security Factors:</strong></p>
+                    <ul>
+                        <li>Hands-on work in unpredictable environments</li>
+                        <li>Climate change driving AC demand</li>
+                        <li>42,500 annual job openings nationally</li>
+                        <li>Essential infrastructure that can't be outsourced</li>
+                    </ul>
+
+                    <p><strong>Market Drivers:</strong><br>
+                    • Data centers need constant cooling<br>
+                    • Green energy transition creates opportunities<br>
+                    • Building electrification trend accelerating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM 2: HVAC ADVANCED PROFESSIONAL -->
+    <section class="program-section" id="advanced-professional">
+        <div class="container">
+            <div class="program-header">
+                <h2 class="program-title">HVAC Advanced Professional <span class="trade-badge">SPECIALIZATION</span></h2>
+                <p class="program-subtitle">Transform your HVAC skills into high-value specializations and leadership roles</p>
+            </div>
+
+            <div class="program-content">
+                <!-- At-Risk Analysis -->
+                <div class="at-risk-section">
+                    <h3 class="section-title">🎯 Target Professionals</h3>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-level">ADVANCEMENT READY</div>
+                        <div>Current HVAC techs seeking growth</div>
+                    </div>
+
+                    <ul class="target-jobs">
+                        <li>HVAC Technicians <span class="job-count">441K workers</span></li>
+                        <li>Entry-Level Techs <span class="job-count">2+ years exp</span></li>
+                        <li>Maintenance Workers <span class="job-count">1.4M workers</span></li>
+                        <li>Facilities Staff <span class="job-count">225K workers</span></li>
+                    </ul>
+
+                    <div class="chart-container">
+                        <canvas id="displacementChart2"></canvas>
+                    </div>
+
+                    <p><strong>Advancement Gap:</strong> 70% of techs stay at entry level</p>
+                    <p><strong>Opportunity:</strong> Massive pay increase for specialization</p>
+                </div>
+
+                <!-- Career Outcomes -->
+                <div class="outcomes-section">
+                    <h3 class="section-title">🚀 Specialized Career Paths</h3>
+                    
+                    <div class="salary-grid">
+                        <div class="salary-card">
+                            <div class="job-title">Data Center Technician</div>
+                            <div class="salary-range">$75,000 - $95,000</div>
+                            <div class="growth-indicator">High-tech facilities</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">HVAC Project Manager</div>
+                            <div class="salary-range">$80,000 - $120,000</div>
+                            <div class="growth-indicator">Leadership track</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Energy Auditor (CEM)</div>
+                            <div class="salary-range">$70,000 - $95,000</div>
+                            <div class="growth-indicator">Green energy focus</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Facilities Manager</div>
+                            <div class="salary-range">$85,000 - $130,000</div>
+                            <div class="growth-indicator">Management role</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Executive Pathways:</strong></p>
+                    <ul>
+                        <li>Systems Designer: $90,000-$125,000</li>
+                        <li>Regional Manager: $100,000-$150,000</li>
+                        <li>VP Operations: $120,000-$200,000+</li>
+                    </ul>
+
+                    <p><strong>Advancement Timeline:</strong><br>
+                    Certification → Specialization → Management → Executive</p>
+                </div>
+
+                <!-- Market Opportunity -->
+                <div class="opportunity-section">
+                    <h3 class="section-title">📊 Specialization Demand</h3>
+                    
+                    <div class="security-score">
+                        <div class="score-number">9.2/10</div>
+                        <div>Career Security Score</div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="opportunityChart2"></canvas>
+                    </div>
+
+                    <p><strong>High-Growth Specializations:</strong></p>
+                    <ul>
+                        <li>Data center cooling: 25% growth annually</li>
+                        <li>Energy efficiency: Federal mandates driving demand</li>
+                        <li>Smart building systems: IoT integration</li>
+                        <li>Renewable energy HVAC: Solar/heat pump systems</li>
+                    </ul>
+
+                    <p><strong>Leadership Demand:</strong><br>
+                    • Baby Boomer retirement creates management gaps<br>
+                    • Complex systems need experienced oversight<br>
+                    • Project management skills in high demand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM 3: HVAC BUSINESS MASTERY -->
+    <section class="program-section" id="business-mastery">
+        <div class="container">
+            <div class="program-header">
+                <h2 class="program-title">HVAC Business Mastery <span class="trade-badge">WEALTH BUILDING</span></h2>
+                <p class="program-subtitle">Build substantial wealth through HVAC business ownership and strategic exits</p>
+            </div>
+
+            <div class="program-content">
+                <!-- At-Risk Analysis -->
+                <div class="at-risk-section">
+                    <h3 class="section-title">💡 Business Opportunity</h3>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-level">WEALTH CREATION</div>
+                        <div>Experienced techs ready for ownership</div>
+                    </div>
+
+                    <ul class="target-jobs">
+                        <li>Senior HVAC Techs <span class="job-count">5+ years exp</span></li>
+                        <li>Lead Technicians <span class="job-count">Team leaders</span></li>
+                        <li>Master Technicians <span class="job-count">Licensed pros</span></li>
+                        <li>Current Business Owners <span class="job-count">Scale-ready</span></li>
+                    </ul>
+
+                    <div class="chart-container">
+                        <canvas id="displacementChart3"></canvas>
+                    </div>
+
+                    <p><strong>Market Size:</strong> $156 billion HVAC industry</p>
+                    <p><strong>Exit Opportunity:</strong> PE firms actively acquiring</p>
+                </div>
+
+                <!-- Career Outcomes -->
+                <div class="outcomes-section">
+                    <h3 class="section-title">💼 Business Outcomes</h3>
+                    
+                    <div class="salary-grid">
+                        <div class="salary-card">
+                            <div class="job-title">Solo Business Owner</div>
+                            <div class="salary-range">$150,000 - $300,000</div>
+                            <div class="growth-indicator">1-3 technicians</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Small Fleet Owner</div>
+                            <div class="salary-range">$300,000 - $750,000</div>
+                            <div class="growth-indicator">5-15 technicians</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Regional Contractor</div>
+                            <div class="salary-range">$750K - $2M+</div>
+                            <div class="growth-indicator">20+ technicians</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Business Sale Exit</div>
+                            <div class="salary-range">$2M - $15M+</div>
+                            <div class="growth-indicator">PE acquisition</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Wealth Building Timeline:</strong></p>
+                    <ul>
+                        <li>Year 1-2: Solo operations, $150K-$250K income</li>
+                        <li>Year 3-5: Team growth, $400K-$800K income</li>
+                        <li>Year 5-10: Scale operations, $1M+ potential exit</li>
+                    </ul>
+
+                    <p><strong>Exit Strategies:**<br>
+                    Strategic sale to PE firm → Management buyout → Franchise expansion</p>
+                </div>
+
+                <!-- Market Opportunity -->
+                <div class="opportunity-section">
+                    <h3 class="section-title">🏢 Business Market</h3>
+                    
+                    <div class="security-score">
+                        <div class="score-number">8.8/10</div>
+                        <div>Business Success Score</div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="opportunityChart3"></canvas>
+                    </div>
+
+                    <p><strong>Market Advantages:</strong></p>
+                    <ul>
+                        <li>Recurring revenue from maintenance contracts</li>
+                        <li>High barriers to entry (licensing, equipment)</li>
+                        <li>Essential service with price stability</li>
+                        <li>Strong local market protection</li>
+                    </ul>
+
+                    <p><strong>PE Interest:**<br>
+                    • Lower-middle market PE seeking HVAC companies<br>
+                    • 3-7x EBITDA valuations common<br>
+                    • Roll-up strategies creating exit opportunities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI CALCULATOR -->
+    <section class="roi-calculator" id="calculator">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Calculate Your HVAC Career ROI</h2>
+            
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <h3>Your Information</h3>
+                    <div class="form-group">
+                        <label for="current-salary">Current Annual Salary</label>
+                        <input type="number" id="current-salary" placeholder="45000" value="45000">
+                    </div>
+                    <div class="form-group">
+                        <label for="program-choice">Choose Track</label>
+                        <select id="program-choice">
+                            <option value="career-launch">HVAC Career Launch</option>
+                            <option value="advanced-professional">Advanced Professional</option>
+                            <option value="business-mastery">Business Mastery</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="average">National Average</option>
+                            <option value="california">California</option>
+                            <option value="washington">Washington</option>
+                            <option value="massachusetts">Massachusetts</option>
+                            <option value="texas">Texas</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateROI()" class="cta-button" style="width: 100%; margin-top: 1rem;">Calculate ROI</button>
+                </div>
+
+                <div class="roi-results">
+                    <h3>Your Investment Return</h3>
+                    <div id="roi-display">
+                        <div class="roi-number">425%</div>
+                        <p>3-Year ROI</p>
+                        <div style="margin: 2rem 0;">
+                            <div style="font-size: 1.2rem; margin: 0.5rem 0;"><strong>Salary Increase:</strong> <span id="salary-increase">

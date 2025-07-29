@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRADESready - Future-Proof Your Career with Essential Infrastructure Skills</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5016 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23FFFFFF"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23FFFFFF"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23FFFFFF"></path></svg>') center bottom/cover no-repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            color: #ff6b35;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a472a;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1a472a;
+        }
+
+        .program-duration {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .program-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .program-features li::before {
+            content: '🔧';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .salary-info {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5016 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .salary-range {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: #f8f9fa;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a472a;
+        }
+
+        /* Displacement Alert */
+        .displacement-alert {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .displacement-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .displacement-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .displacement-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5016 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 2rem auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .large-cta {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .large-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Interactive Elements */
+        .program-card:hover .program-title {
+            color: #ff6b35;
+        }
+
+        .urgent-banner {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgent-banner::before {
+            content: '⚠️';
+            margin-right: 10px;
+        }
+
+        /* Trade specific styling */
+        .trade-icon {
+            color: #ff6b35;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="urgent-banner">
+        Manufacturing jobs disappearing fast - 2M factory workers displaced by AI by 2025. HVAC careers growing 9% through 2033.
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">TRADESready</div>
+            <ul class="nav-links">
+                <li><a href="#programs">Career Tracks</a></li>
+                <li><a href="#why-choose">Why Trades</a></li>
+                <li><a href="#displacement">Job Security</a></li>
+                <li><a href="#apply">Get Started</a></li>
+            </ul>
+            <a href="#apply" class="cta-button">Start Your Journey</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Future-Proof Your Career</h1>
+                <p class="tagline">While robots replace factory workers, skilled trades are booming. Build, maintain, and profit from the essential infrastructure that powers America.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">42,500</span>
+                        <span class="stat-label">Annual HVAC Job Openings</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">9%</span>
+                        <span class="stat-label">Faster Growth Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$57K+</span>
+                        <span class="stat-label">Median Starting Salary</span>
+                    </div>
+                </div>
+
+                <a href="#apply" class="cta-button large-cta">Discover Your Path →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Three Pathways to HVAC Success</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">From entry-level to business ownership - choose your route to financial independence</p>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3 class="program-title"><span class="trade-icon">🚀</span>HVAC Career Launch</h3>
+                    <div class="program-duration">8 weeks - 4 years</div>
+                    <p><strong>Perfect for:</strong> High school grads, displaced factory workers, ex-military, career changers</p>
+                    
+                    <ul class="program-features">
+                        <li>Multiple entry pathways (fast-track or apprenticeship)</li>
+                        <li>EPA certification and state licensing prep</li>
+                        <li>Hands-on training with real equipment</li>
+                        <li>Immediate job placement assistance</li>
+                        <li>Military skills transfer programs</li>
+                        <li>Community college partnerships</li>
+                    </ul>
+
+                    <div class="salary-info">
+                        <div class="salary-range">$45,000 - $70,000</div>
+                        <div>Starting salary range</div>
+                    </div>
+
+                    <p><strong>Investment:</strong> $2,500 - $15,000 (many programs paid during training)</p>
+                    <a href="#apply" class="cta-button" style="width: 100%; text-align: center; margin-top: 1rem;">Explore Entry Options</a>
+                </div>
+
+                <div class="program-card">
+                    <h3 class="program-title"><span class="trade-icon">⚡</span>HVAC Advanced Professional</h3>
+                    <div class="program-duration">6 months - 2 years</div>
+                    <p><strong>Perfect for:</strong> Current HVAC techs seeking specialization and higher earnings</p>
+                    
+                    <ul class="program-features">
+                        <li>Data Center Technician certification</li>
+                        <li>Mechanical Systems Design training</li>
+                        <li>HVAC Project Management credentials</li>
+                        <li>Energy Auditor (CEM) certification</li>
+                        <li>Facilities Management pathways</li>
+                        <li>Executive MBA tracks (no bachelor's required)</li>
+                    </ul>
+
+                    <div class="salary-info">
+                        <div class="salary-range">$65,000 - $120,000</div>
+                        <div>Specialized role range</div>
+                    </div>
+
+                    <p><strong>Investment:</strong> $5,000 - $35,000 (employer-sponsored options available)</p>
+                    <a href="#apply" class="cta-button" style="width: 100%; text-align: center; margin-top: 1rem;">Advance Your Career</a>
+                </div>
+
+                <div class="program-card">
+                    <h3 class="program-title"><span class="trade-icon">💼</span>HVAC Business Mastery</h3>
+                    <div class="program-duration">6 months - 1 year</div>
+                    <p><strong>Perfect for:</strong> Experienced techs ready to build wealth through business ownership</p>
+                    
+                    <ul class="program-features">
+                        <li>Business formation and legal structure</li>
+                        <li>Contract acquisition strategies</li>
+                        <li>Team hiring and management systems</li>
+                        <li>Financial planning and scaling tactics</li>
+                        <li>Exit strategy planning (PE sale preparation)</li>
+                        <li>WorkHero.pro back-office partnership</li>
+                    </ul>
+
+                    <div class="salary-info">
+                        <div class="salary-range">$100K - $1M+</div>
+                        <div>Business owner potential</div>
+                    </div>
+
+                    <p><strong>Investment:</strong> $15,000 - $25,000 (revenue sharing model available)</p>
+                    <a href="#apply" class="cta-button" style="width: 100%; text-align: center; margin-top: 1rem;">Build Your Empire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="displacement-alert" id="displacement">
+        <div class="container">
+            <h2>The Manufacturing Crisis is Real</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">While factories automate away millions of jobs, essential infrastructure work is booming</p>
+
+            <div class="displacement-stats">
+                <div class="displacement-stat">
+                    <div class="displacement-number">2 Million</div>
+                    <div>Manufacturing jobs lost to AI by 2025</div>
+                </div>
+                <div class="displacement-stat">
+                    <div class="displacement-number">20 Million</div>
+                    <div>Factory jobs at risk by 2030</div>
+                </div>
+                <div class="displacement-stat">
+                    <div class="displacement-number">1.6 Jobs</div>
+                    <div>Lost for every robot installed</div>
+                </div>
+                <div class="displacement-stat">
+                    <div class="displacement-number">441,200</div>
+                    <div>HVAC jobs available RIGHT NOW</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; margin-top: 2rem; opacity: 0.9;">
+                <strong>The choice is clear:</strong> Stay in a shrinking industry or transition to essential infrastructure work that can't be automated.
+            </p>
+        </div>
+    </section>
+
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why HVAC Careers Are Recession-Proof</h2>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Essential Infrastructure</h3>
+                    <p>Every building needs heating and cooling. As long as people live and work indoors, HVAC technicians are essential to comfort and survival.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Resistant Work</h3>
+                    <p>HVAC requires hands-on problem-solving in unpredictable environments. Robots can't crawl through crawl spaces or diagnose complex system failures.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>Growing Demand</h3>
+                    <p>Climate change drives AC demand. Green energy transition creates new opportunities. Data centers need constant cooling. The work is expanding.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Strong Earnings</h3>
+                    <p>Top-paying states offer $75K+ salaries. Overtime and emergency calls boost income. Business owners can earn $500K+ annually.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Entry</h3>
+                    <p>Start earning in 8-16 weeks with fast-track programs. No 4-year degree required. Learn while you earn through apprenticeships.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Multiple Pathways</h3>
+                    <p>Entry-level tech → Senior specialist → Project manager → Business owner. Clear progression with increasing income at every level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="apply">
+        <div class="container">
+            <h2>Stop Waiting for Pink Slips</h2>
+            <p>Manufacturing jobs are disappearing. HVAC careers are thriving. The transition window won't stay open forever.</p>
+
+            <div class="cta-form">
+                <h3 style="margin-bottom: 1.5rem;">Get Your Free Career Assessment</h3>
+                <form id="application-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="current-situation">Current Situation</label>
+                        <select id="current-situation" name="current-situation" required>
+                            <option value="">Select your situation</option>
+                            <option value="manufacturing-worker">Manufacturing/Factory Worker</option>
+                            <option value="recent-graduate">Recent High School Graduate</option>
+                            <option value="military-veteran">Military Veteran</option>
+                            <option value="career-changer">Looking for Career Change</option>
+                            <option value="current-hvac">Current HVAC Tech (Advancement)</option>
+                            <option value="considering-business">Interested in Business Ownership</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="program-interest">Track of Interest</label>
+                        <select id="program-interest" name="program-interest" required>
+                            <option value="">Select a track</option>
+                            <option value="career-launch">HVAC Career Launch</option>
+                            <option value="advanced-professional">HVAC Advanced Professional</option>
+                            <option value="business-mastery">HVAC Business Mastery</option>
+                            <option value="not-sure">Not sure - help me decide</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="large-cta">Get My Free Assessment</button>
+                </form>
+            </div>
+
+            <p style="margin-top: 2rem; opacity: 0.8;">✓ No obligation • ✓ Free consultation • ✓ 24-hour response guaranteed</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TRADESready. All rights reserved. | Building careers that build America's future.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">Contact: (555) 234-5678 | info@tradesready.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Thank you! Your request has been submitted. A trades career specialist will contact you within 24 hours to discuss your personalized pathway to HVAC success.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all program cards and features
+        document.querySelectorAll('.program-card, .feature, .displacement-stat').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Dynamic stats counter animation
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+            },
